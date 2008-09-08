@@ -95,7 +95,7 @@ bool Import::apply(int argc, char* const argv[])
         try { read_db->load(base_tlb, config, registry); }
         catch(ImportError e)
         { 
-            cerr << "error base registry " << base_tlb << ": " << e.toString() << endl; 
+            cerr << "error base registry " << base_tlb << ": " << e.what() << endl;
             return false;
         }
     }
