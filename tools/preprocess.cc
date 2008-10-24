@@ -9,6 +9,7 @@
 #include <errno.h>
 
 #include <vector>
+#include <cstring>
 
 #include <iostream>
 using namespace std;
