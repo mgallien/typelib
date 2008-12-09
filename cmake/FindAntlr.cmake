@@ -13,6 +13,7 @@
 #        and libraries:
 #      Antlr_ANTLR_CONFIG_EXECUTABLE is set to the full path of antlr-config
 #      Antlr_CFLAGS is set to the compiler flags and
+#      Antlr_INCLUDE_DIRS with the include dirs for antlr
 #      Antlr_LIBRARIES to the runtime library.
 #      If a PIC version of the runtime library (suitable to build shared
 #      libraries on some Unices) is found, Antlr_PIC_LIBRARIES is set as well.
@@ -76,6 +77,8 @@ IF(Antlr_EXECUTABLE)
 		EXECUTE_PROCESS(COMMAND ${Antlr_ANTLR_CONFIG_EXECUTABLE} --cflags
 		    OUTPUT_VARIABLE Antlr_CFLAGS)
 		STRING(REPLACE "\n" "" Antlr_CFLAGS ${Antlr_CFLAGS})
+		STRING(REGEX MATCHALL "-I[^ ]" Antlr_PREFIXED_DIRS ${Antlr_CFLAGS})
+		STRING(REPLACE "-I" " " Antlr_INCLUDE_DIRS ${Antlr_PREFIXED_DIRS})
 
 		EXECUTE_PROCESS(COMMAND ${Antlr_ANTLR_CONFIG_EXECUTABLE} --libs
 		    OUTPUT_VARIABLE Antlr_LIBRARIES)
