@@ -309,7 +309,7 @@ VALUE value_initialize(VALUE self, VALUE ptr)
 	if (! NIL_P(ptr))
 	{
             char* ruby_buffer = StringValuePtr(ptr);
-            vector<uint8_t> cxx_buffer(ruby_buffer, ruby_buffer + RSTRING(ptr)->len);
+	    vector<uint8_t> cxx_buffer(ruby_buffer, ruby_buffer + RSTRING_LEN(ptr));
             try { Typelib::load(Value(memory_cptr(buffer), t), cxx_buffer); }
             catch(std::runtime_error e)
             { rb_raise(rb_eArgError, e.what()); }
@@ -481,15 +481,15 @@ static VALUE typelib_memcpy(VALUE, VALUE to, VALUE from, VALUE size)
 	to = StringValue(to);
 	rb_str_modify(to);
 
-	p_to    = RSTRING(to)->ptr;
-	size_to = RSTRING(to)->len;
+	p_to    = RSTRING_PTR(to);
+	size_to = RSTRING_LEN(to);
     }
     else typelib_validate_value_arg(to, p_to, size_to);
 
     if (TYPE(from) == T_STRING)
     {
-	p_from = RSTRING(from)->ptr;
-	size_from = RSTRING(from)->len;
+	p_from = RSTRING_PTR(from);
+	size_from = RSTRING_LEN(from);
     }
     else typelib_validate_value_arg(from, p_from, size_from);
 

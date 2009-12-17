@@ -1,9 +1,7 @@
 #include "typelib.hh"
 #include <typelib/value_ops.hh>
 #include <ruby.h>
-extern "C" {
-#include <st.h>
-}
+#include <ruby/st.h>
 
 using namespace Typelib;
 using namespace std;
@@ -28,8 +26,8 @@ static int memory_table_hash(void* a)
 }
 
 static struct st_hash_type memory_table_type = {
-    (int (*)())memory_table_compare,
-    (int (*)())memory_table_hash
+    (int (*)(...))memory_table_compare,
+    (int (*)(...))memory_table_hash
 };
 
 struct RbMemoryLayout
