@@ -3,7 +3,7 @@ FIND_PACKAGE(Antlr REQUIRED COMPONENTS CPP)
 ADD_ANTLR_GRAMMAR(cparser.g cparser_output)
 
 INCLUDE_DIRECTORIES(${Antlr_CFLAGS})
-LINK_DIRECTORIES(${Antlr_PIV_LIBRARIES})
+LINK_DIRECTORIES(${Antlr_PIC_LIBRARIES})
 
 ADD_LIBRARY(typeLang_c SHARED import.cc Dictionary.cc Support.cc
 	    typesolver.cc packing.cc containers.cc ${cparser_output})
