@@ -298,7 +298,7 @@ module Typelib
                 get_fields.each do |name, offset, _|
                     return offset if name == fieldname
                 end
-                raise "no such field #{fieldname} in #{self}"
+                raise "no such fiels #{fieldname} in #{self}"
             end
 
 	    # The list of fields
