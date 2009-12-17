@@ -6,7 +6,7 @@ ADD_LIBRARY(typeLib SHARED
 set_source_files_properties(pluginmanager.cc PROPERTIES
    COMPILE_FLAGS -DTYPELIB_PLUGIN_PATH="\\"${CMAKE_INSTALL_PREFIX}/lib/typelib\\"")
 
-target_link_libraries(typeLib ${Utilmm_LIBRARIES} ${CMAKE_DL_LIBS})
+target_link_libraries(typeLib ${Utilmm_LIBRARIES} ${CMAKE_DL_LIBS} ${Boost_SYSTEM_LIBRARIES} ${Boost_FILESYSTEM_LIBRARIES})
 #TARGET_LINK_LIBRARIES(typeLib typeLang_c typeLang_tlb typeLang_idl)
 
 install(TARGETS typeLib
