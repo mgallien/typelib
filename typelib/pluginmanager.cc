@@ -47,7 +47,7 @@ PluginManager::PluginManager()
     directory_iterator end_it;
     for (directory_iterator it(plugin_dir); it != end_it; ++it)
     {
-        if (it->path().extension() == ".so")
+        if (extension(it->path()) == ".so")
             loadPlugin(it->path().file_string());
     }
 }
